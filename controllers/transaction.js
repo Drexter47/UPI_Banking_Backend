@@ -14,7 +14,7 @@ config({
 // Declare the nodemailer that we are using brevo(speciflying all brevo credentials) as our server to send emails
 let transporter = nodemailer.createTransport({
   host: "smtp-relay.brevo.com",
-  port: 587,
+  port: 465,
   secure: false, // true for 465, false for other ports
   auth: {
     user: process.env.Brevo_USER, // generated ethereal user
