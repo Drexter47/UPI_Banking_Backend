@@ -246,7 +246,7 @@ export const makeTranscationUsingPhoneNo = async (req, res, next) => {
         from: '"XYZBanking" xyzbanking@gmail.com', // sender address
         to: user.email, // list of receivers
         subject: "DEBITED Money from XYZBanking 💸", // Subject line
-        text: `Hello  ${user.name},your account has been debited by ${amount}₹ to UPI ID ${receiverUser.upiId} (the transaction id is ${result._id}), Total available balance is ${user.wallet}₹.`, // plain text body
+        text: `Hello  ${user.name},your account has been debited by ${amount}₹ to UPI Id  ${phone}@xyzbanking (the transaction id is ${result._id}), Total available balance is ${user.wallet}₹.`, // plain text body
       });
       return result;
     })
@@ -255,7 +255,7 @@ export const makeTranscationUsingPhoneNo = async (req, res, next) => {
         from: '"XYZBanking" xyzbanking@gmail.com', // sender address
         to: receiverUser.email, // list of receivers
         subject: "CREDITED Money to your account in XYZBanking 💵🤑", // Subject line
-        text: `Hello  ${receiverUser.name},your account has been credited by ${amount}₹ from UPI ID  number ${user.upiId} (the transaction id is ${result._id}), Total available balance is ${receiverUser.wallet}₹.`, // plain text body
+        text: `Hello  ${receiverUser.name},your account has been credited by ${amount}₹ from UPI ID ${user.upiId} (the transaction id is ${result._id}), Total available balance is ${receiverUser.wallet}₹.`, // plain text body
       });
       return result;
     })
