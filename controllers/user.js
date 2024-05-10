@@ -300,14 +300,14 @@ export const completeProfile = async (req, res, next) => {
     return next(error);
   }
 
-  if (!req.file) {
-    const error = new Error("No image provided.");
-    error.statusCode = 422;
-    return next(error);
-  }
+  // if (!req.file) {
+  //   const error = new Error("No image provided.");
+  //   error.statusCode = 422;
+  //   return next(error);
+  // }
 
   const { userId, name, address, dob, bank, upipin } = req.body;
-  const imageUrl = req.file.path.replace("\\", "/");
+  // const imageUrl = req.file.path.replace("\\", "/");
 
   try {
     const hashedUPI = await bcrypt.hash(upipin, 10);
@@ -318,7 +318,7 @@ export const completeProfile = async (req, res, next) => {
     user.dob = dob;
     user.bank = bank;
     user.upipin = hashedUPI;
-    user.image = imageUrl;
+    // user.image = imageUrl;
     user.accountNum;
     const result = await user.save();
     res.status(201).json({ message: "Profile complete!", result: result });
