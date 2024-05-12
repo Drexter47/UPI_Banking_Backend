@@ -5,6 +5,7 @@ import { User } from "../model/user.js";
 import { sendCookie } from "../utils/features.js";
 import jwt from "jsonwebtoken";
 
+
 export const signIn = async (req, res, next) => {
   try {
     const { email, password } = req.body;
