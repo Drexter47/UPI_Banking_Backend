@@ -60,13 +60,12 @@ config({
 
 //for deployment
 app.use(
-  // cors({
-  //   origin: "*", //we can give specific domain , that only take accept the request from that specific domain
-  //   methods: ["GET", "PUT", "DELETE", "POST", "PATCH"],
-  //   credentials: true, //for get header details like cookie...
-  //   allowedHeaders: ["Content-Type", "Authorization"],
-  // })
-  cors()
+  cors({
+    // origin: "*", //we can give specific domain , that only take accept the request from that specific domain
+    methods: ["GET", "PUT", "DELETE", "POST", "PATCH"],
+    credentials: true, //for get header details like cookie...
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
 );
 
 // Set up express-session middleware
