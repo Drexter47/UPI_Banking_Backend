@@ -46,9 +46,10 @@ const __dirname = dirname(__filename);
 app.use(multer({ storage: storage, fileFilter: fileFilter }).single("image"));
 app.use("/images", express.static(path.join(__dirname, "images")));
 
+
 app.use((err, req, res, next) => {
   if (err instanceof multer.MulterError) {
-    res.status(400).json({ error: "File upload error", message: err.message });
+    res.status(400).json({ error: 'File upload error', message: err.message });
   } else {
     next(err);
   }
@@ -59,29 +60,19 @@ config({
 });
 
 //for deployment
-// app.use(
-//   cors({
-//     // origin: "*", //we can give specific domain , that only take accept the request from that specific domain
-//     methods: ["GET", "PUT", "DELETE", "POST", "PATCH"],
-//     credentials: true, //for get header details like cookie...
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//   })
-// );
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*", process.env.FRONTEND_URL);
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "*", //we can give specific domain , that only take accept the request from that specific domain
+    methods: ["GET", "PUT", "DELETE", "POST","PATCH"],
+    credentials: true, //for get header details like cookie...
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 // Set up express-session middleware
 app.use(
   session({
-    secret: "secret", // Use a random string for better security
+    secret: "parth", // Use a random string for better security
     resave: false,
     saveUninitialized: false,
   })
