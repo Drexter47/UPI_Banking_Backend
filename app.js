@@ -59,14 +59,24 @@ config({
 });
 
 //for deployment
-app.use(
-  cors({
-    // origin: "*", //we can give specific domain , that only take accept the request from that specific domain
-    methods: ["GET", "PUT", "DELETE", "POST", "PATCH"],
-    credentials: true, //for get header details like cookie...
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+// app.use(
+//   cors({
+//     // origin: "*", //we can give specific domain , that only take accept the request from that specific domain
+//     methods: ["GET", "PUT", "DELETE", "POST", "PATCH"],
+//     credentials: true, //for get header details like cookie...
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 
 // Set up express-session middleware
 app.use(
